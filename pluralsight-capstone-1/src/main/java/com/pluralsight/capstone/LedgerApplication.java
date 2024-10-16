@@ -5,7 +5,7 @@ import static com.pluralsight.capstone.Ledger.displayLedger;
 import static com.pluralsight.capstone.PaymentsAndDeposits.addDeposit;
 import static com.pluralsight.capstone.PaymentsAndDeposits.makePayment;
 
-public class Capstone1 {
+public class LedgerApplication {
     public static void main (String[]args) {
         //Requirements:
         /* Read and write a text file
