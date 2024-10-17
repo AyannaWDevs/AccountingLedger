@@ -8,22 +8,24 @@ import java.util.ArrayList;
 
 public class ReadAndWrite {
     //Formatting date and time
-    LocalDate theDate = LocalDate.now();
-    LocalTime theTime = LocalTime.now();
-    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    static LocalDate theDate = LocalDate.now();
+    static LocalTime theTime = LocalTime.now();
+    static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 //Created variables for formatted date and time
-    String formattedDate = theDate.format(dateFormatter);
-    String formattedTime = theTime.format(timeFormatter);
+   static String formattedDate = theDate.format(dateFormatter);
+   static String formattedTime = theTime.format(timeFormatter);
+
+   static ArrayList<Transaction> transactions = new ArrayList<>();
 
     // Updated method to accept a list of transactions
-    public String writeToCSV(ArrayList<Transaction> transactions) {
+    public static String writeToCSV(ArrayList<Transaction> transactions) {
         ArrayList<String[]> data = new ArrayList<>(); //create arraylist of all data
-
         data.add(new String[]{"Date", "Time", "Description", "Vendor", "Amount"}); //header
 
         // Loop through the list of transactions
         for (Transaction transaction : transactions) {
+
             data.add(new String[]{
                     formattedDate,
                     formattedTime,
@@ -34,22 +36,36 @@ public class ReadAndWrite {
         }
 
         // Write the data to the CSV file
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.csv", true))) {
-            for (String[] row : data) {
-                writer.write(String.join("\\|", row));
-                writer.newLine(); // Move to the next line
+        try {
+            FileWriter fWriter = new FileWriter("./src/main/resources/transactions.csv");
+            BufferedWriter bWriter = new BufferedWriter(fWriter);
+            for (Transaction t : transactions) {
+                bWriter.write(formattedDate + "|" + formattedTime );
+                bWriter.write(String.format("%s|%s|%s|%s|%f",
+                        formattedDate, formattedTime, t.getDescription(), t.getVendor(), t.getAmount()));
+           }
+                for (Transaction row : transactions) {
+                    bWriter.newLine(); // Move to the next line
+                }
+                bWriter.close();
+            } catch(IOException e){
+                return "Error writing to file: ";
             }
-        } catch (IOException e) {
-            return "Error writing to file: ";
-        }
 
         return "Successfully written information to file"; // Return statement after writing
     }
     public void readToFile(){
-        try{FileReader fileReader = new FileReader("transactions.csv");}
-        catch (FileNotFoundException e){
-            System.out.println("Error, try again.");
+        try {
+            FileReader fileReader = new FileReader("./src/main/java/resources/transactions.csv");
+            BufferedReader bufReader = new BufferedReader(fileReader);
+            String input;
+            while ((input = bufReader.readLine()) !=null) {
+                System.out.println(input);
+            }
+            bufReader.close();
         }
-        BufferedReader bufReader = new BufferedReader(fileReader);
+        catch(IOException e){
+               e.printStackTrace();
+            }
+        }
     }
-}

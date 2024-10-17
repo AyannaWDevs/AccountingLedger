@@ -10,16 +10,17 @@ public class Transaction { //class properties
     private double amount;
 
     //constructor
-    public void Transaction() {
-        this.description = description;
-        this.vendor = vendor;
-        this.amount = amount;
-        this.endDate = endDate;
-        this.startDate = startDate;
+    public Transaction() {
+        this.description = "";
+        this.vendor = "";
+        this.amount = 0.0;
+        this.endDate = null;
+        this.startDate = null;
     }
     // constructor
-    public void Transactions(String description, String vendor, double amount, LocalDate endDate, LocalDate startDate){
-
+    public Transaction(String description, String vendor, double amount, LocalDate endDate, LocalDate startDate){
+            this.description = description;
+            // same thing
     }
 
     public LocalDate getStartDate() {
