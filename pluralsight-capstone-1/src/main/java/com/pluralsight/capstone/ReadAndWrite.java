@@ -40,7 +40,8 @@ public class ReadAndWrite {
             FileWriter fWriter = new FileWriter("./src/main/resources/transactions.csv");
             BufferedWriter bWriter = new BufferedWriter(fWriter);
             for (Transaction t : transactions) {
-                bWriter.write(formattedDate + "|" + formattedTime );
+                bWriter.newLine();
+            //    bWriter.write(formattedDate + "|" + formattedTime );
                 bWriter.write(String.format("%s|%s|%s|%s|%f",
                         formattedDate, formattedTime, t.getDescription(), t.getVendor(), t.getAmount()));
            }
@@ -56,7 +57,7 @@ public class ReadAndWrite {
     }
     public void readToFile(){
         try {
-            FileReader fileReader = new FileReader("./src/main/java/resources/transactions.csv");
+            FileReader fileReader = new FileReader("./src/main/resources/transactions.csv");
             BufferedReader bufReader = new BufferedReader(fileReader);
             String input;
             while ((input = bufReader.readLine()) !=null) {

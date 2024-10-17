@@ -25,7 +25,11 @@ public class LedgerLogic {
     }
 
     public static void displayPayments(){
-
+        for (Transaction t : data) {
+            if (t.getAmount() <= 0) {
+                System.out.println(t);
+            }
+        }
     }
 
    public static void reportsScreen(){

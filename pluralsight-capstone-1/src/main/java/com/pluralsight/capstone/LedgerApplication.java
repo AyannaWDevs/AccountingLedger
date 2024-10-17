@@ -3,9 +3,11 @@ import java.io.File;
 import java.util.Scanner;
 import static com.pluralsight.capstone.PaymentsAndDeposits.addDeposit;
 import static com.pluralsight.capstone.PaymentsAndDeposits.makePayment;
+import static com.pluralsight.capstone.ReadAndWrite.transactions;
 
 public class LedgerApplication {
     public static void main (String[]args) {
+        ReadAndWrite.writeToCSV(transactions);
         //Requirements:
         /* Read and write a text file
            Format the file I/OII
@@ -78,7 +80,7 @@ public class LedgerApplication {
                homeScreen();  //returns to home screen
             default:
                 System.out.println("Invalid input. Please enter A, D, P, R, or H");
-                break;
+                displayLedger();
         }
     }
     public void reportsScreen(){
