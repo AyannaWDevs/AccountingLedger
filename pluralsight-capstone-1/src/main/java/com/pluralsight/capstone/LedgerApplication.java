@@ -2,8 +2,8 @@ package com.pluralsight.capstone;
 
 import java.util.Scanner;
 
+import static com.pluralsight.capstone.LedgerLogic.*;
 import static com.pluralsight.capstone.PaymentsAndDeposits.makePayment;
-import static com.pluralsight.capstone.ReadAndWrite.*;
 
 public class LedgerApplication {
     public static void main(String[] args) {
@@ -73,7 +73,7 @@ public class LedgerApplication {
                 LedgerLogic.displayPayments(); //displays all payments
                 break;
             case "R":
-                LedgerLogic.reportsScreen(); //goes to reports screen
+                reportsScreen(); //goes to reports screen
                 break;
             case "H":
                 System.out.println("Now returning to home screen...");
@@ -101,17 +101,19 @@ public class LedgerApplication {
             scanner.nextLine();
             switch (choice) {
                 case 1:
+                    reportMtD();
                     break;
-
                 case 2:
+                    reportPreviousMonth();
                     break;
-
                 case 3:
+                        reportYtD();
                     break;
                 case 4:
+                        reportPreviousYear();
                     break;
-
                 case 5:
+                        reportVendorSearch();
                     break;
                 case 0:
                     loopFlag = false;
