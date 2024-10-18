@@ -12,61 +12,45 @@ public class ReadAndWrite {
     static LocalTime theTime = LocalTime.now();
     static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-//Created variables for formatted date and time
-   static String formattedDate = theDate.format(dateFormatter);
-   static String formattedTime = theTime.format(timeFormatter);
+    //Created variables for formatted date and time
+    static String formattedDate = theDate.format(dateFormatter);
+    static String formattedTime = theTime.format(timeFormatter);
 
-   static ArrayList<Transaction> transactions = new ArrayList<>();
+    static ArrayList<Transaction> transactions = new ArrayList<>();
 
     // Updated method to accept a list of transactions
-    public static String writeToCSV(ArrayList<Transaction> transactions) {
-        ArrayList<String[]> data = new ArrayList<>(); //create arraylist of all data
-        data.add(new String[]{"Date", "Time", "Description", "Vendor", "Amount"}); //header
-
-        // Loop through the list of transactions
-        for (Transaction transaction : transactions) {
-
-            data.add(new String[]{
-                    formattedDate,
-                    formattedTime,
-                    transaction.getDescription(),
-                    transaction.getVendor(),
-                    String.valueOf(transaction.getAmount())
-            });
-        }
+    public static void writeToCSV(Transaction transactions) {
 
         // Write the data to the CSV file
         try {
-            FileWriter fWriter = new FileWriter("src/main/resources/transactions.csv");
+            FileWriter fWriter = new FileWriter("C:\\pluralsight\\LearnToCode_Capstones\\pluralsight-capstone-1\\src\\main\\resources\\transactions.csv", true);
             BufferedWriter bWriter = new BufferedWriter(fWriter);
-            for (Transaction t : transactions) {
-                bWriter.newLine();
-            //    bWriter.write(formattedDate + "|" + formattedTime );
-                bWriter.write(String.format("%s|%s|%s|%s|%f",
-                        formattedDate, formattedTime, t.getDescription(), t.getVendor(), t.getAmount()));
-           }
-                for (Transaction row : transactions) {
-                    bWriter.newLine(); // Move to the next line
-                }
-                bWriter.close();
-            System.out.println("Successfully written information to file"); // Return statement after writing
-            } catch(IOException e){
-                return "Error writing to file: ";
-            }
-        return null;
+            bWriter.write(transactions.getDate() + "|" + transactions.getTime() + "|" + transactions.getDescription() + "|" + transactions.getVendor() + "|" + transactions.getAmount()+"\n");
+            bWriter.close();
+        } catch (IOException e) {
+            System.out.println("error");
+        }
+
     }
-    public static void readToFile(){
+
+    public static void readToFile() {
         try {
-            FileReader fileReader = new FileReader("src/main/resources/transactions.csv");
+            FileReader fileReader = new FileReader("C:\\pluralsight\\LearnToCode_Capstones\\pluralsight-capstone-1\\src\\main\\resources\\transactions.csv");
             BufferedReader bufReader = new BufferedReader(fileReader);
             String input;
-            while ((input = bufReader.readLine()) !=null) {
-                System.out.println(input);
+            while ((input = bufReader.readLine()) != null) {
+            String [] transactionInfo = input.split("[|]");
+            String date = transactionInfo[0];
+            String time = transactionInfo[1];
+            String vendor = transactionInfo[2];
+            String description = transactionInfo[3];
+            double amount = Double.parseDouble(transactionInfo[4]);
+            Transaction transaction = new Transaction(description,vendor,amount,date,time);
+            transactions.add(transaction);
             }
             bufReader.close();
-        }
-        catch(IOException e){
-               e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+}

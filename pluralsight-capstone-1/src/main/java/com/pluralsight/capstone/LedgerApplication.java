@@ -1,17 +1,21 @@
 package com.pluralsight.capstone;
+
 import java.util.Scanner;
-import static com.pluralsight.capstone.PaymentsAndDeposits.addDeposit;
+
 import static com.pluralsight.capstone.PaymentsAndDeposits.makePayment;
 import static com.pluralsight.capstone.ReadAndWrite.*;
 
 public class LedgerApplication {
-    public static void main (String[]args) {
+    public static void main(String[] args) {
         //Requirements:
         /* Read and write a text file
            Format the file I/OII
            Have methods for each screen
             */
-        System.out.println("""
+        ReadAndWrite.readToFile();
+        boolean done = false;
+        while(!done) {
+            System.out.println("""
                 Hello, Welcome to The Accounting Ledger Application!
                 =====================================================
                 Enter:
@@ -21,51 +25,45 @@ public class LedgerApplication {
                 'X' to exit the application
                 """);
 
-        homeScreen();
-        boolean done = false;
-    }
-    public static void homeScreen() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine().toUpperCase().trim(); //take user input
-        switch (input) {
-            case "D": //prompt user for deposit info and save to csv file
-                addDeposit();
-                writeToCSV(transactions);
-                addDeposit();
-                readToFile();
-                break;
-            case "P":
-                makePayment(); //prompt user for debit info and save to csv file
-                break;
-            case "L":
-                displayLedgerScreen(); //display ledger screen
-                break;
-            case "X":
-                System.exit(0);
-            default:
-                System.out.println("Invalid input. Please enter D, P, L, or X");
-                homeScreen();
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine().toUpperCase().trim(); //take user input
+            switch (input) {
+                case "D": //prompt user for deposit info and save to csv file
+                    PaymentsAndDeposits.addDeposits(scanner);
+                    break;
+                case "P":
+                    makePayment(); //prompt user for debit info and save to csv file
+                    break;
+                case "L":
+                    displayLedgerScreen(scanner); //display ledger screen
+                    break;
+                case "X":
+                    done=true;
+                    break;
+                default:
+                    System.out.println("Invalid input. Please enter D, P, L, or X");
 
-                //set a boolean to false do while !done x
-                //to String to print class
+                    //set a boolean to false do while !done x
+                    //to String to print class
+            }
         }
     }
-    public static void displayLedgerScreen(){
-        String header = String.format("Date","Time","Description","Vendor","Amount");
+
+    public static void displayLedgerScreen(Scanner scanner) {
+        String header = String.format("Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("""
                 Welcome to the Ledger Screen
                 =====================================================
                 Enter:
-                'D' to display all entries
+                'A' to display all entries
+                'D' to display all deposits
                 'P' to display all payments
                 'R' to enter the Reports Screen to perform a custom search
                 'H' to return to the Home Screen
                 """);
-        Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine().toUpperCase().trim(); //take user input
         switch (input) {
             case "A": //prompt user for deposit info and save to csv file
-                System.out.println(header);
                 LedgerLogic.displayEntries(); // displays all entries
                 break;
             case "D":
@@ -79,14 +77,14 @@ public class LedgerApplication {
                 break;
             case "H":
                 System.out.println("Now returning to home screen...");
-               homeScreen();  //returns to home screen
                 break;
             default:
                 System.out.println("Invalid input. Please enter A, D, P, R, or H");
-                displayLedgerScreen();
+                displayLedgerScreen(scanner);
         }
     }
-    public static void reportsScreen(){
+
+    public static void reportsScreen() {
         boolean loopFlag = true;
         while (loopFlag) {
             System.out.println("""
@@ -116,7 +114,7 @@ public class LedgerApplication {
                 case 5:
                     break;
                 case 0:
-                    loopFlag=false;
+                    loopFlag = false;
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
