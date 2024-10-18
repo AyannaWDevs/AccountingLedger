@@ -10,24 +10,24 @@ public class LedgerLogic {
     }
 
     public static void displayEntries(){
-        for (Transaction t : transactions) {
-                System.out.println(t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount()+"\n");
+        for (Transaction transaction : transactions) {
+                System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription() + "|" + transaction.getVendor() + "|" + transaction.getAmount()+"\n");
 
         }
    }
 
     public static void displayDeposits(){
-        for (Transaction t : transactions) {
-            if (t.getAmount() >= 0) {
-                System.out.println(t);
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() >= 0) {
+                System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription() + "|" + transaction.getVendor() + "|" + transaction.getAmount()+"\n");
             }
         }
     }
 
     public static void displayPayments(){
-        for (Transaction t : transactions) {
-            if (t.getAmount() <= 0) {
-                System.out.println(t);
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() <= 0) {
+                System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription() + "|" + transaction.getVendor() + "|" + transaction.getAmount()+"\n");
             }
         }
     }
