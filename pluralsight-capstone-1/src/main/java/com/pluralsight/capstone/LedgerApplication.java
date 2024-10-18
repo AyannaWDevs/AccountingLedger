@@ -1,13 +1,11 @@
 package com.pluralsight.capstone;
-import java.io.File;
 import java.util.Scanner;
 import static com.pluralsight.capstone.PaymentsAndDeposits.addDeposit;
 import static com.pluralsight.capstone.PaymentsAndDeposits.makePayment;
-import static com.pluralsight.capstone.ReadAndWrite.transactions;
+import static com.pluralsight.capstone.ReadAndWrite.*;
 
 public class LedgerApplication {
     public static void main (String[]args) {
-        ReadAndWrite.writeToCSV(transactions);
         //Requirements:
         /* Read and write a text file
            Format the file I/OII
@@ -32,12 +30,15 @@ public class LedgerApplication {
         switch (input) {
             case "D": //prompt user for deposit info and save to csv file
                 addDeposit();
+                writeToCSV(transactions);
+                addDeposit();
+                readToFile();
                 break;
             case "P":
                 makePayment(); //prompt user for debit info and save to csv file
                 break;
             case "L":
-                displayLedger(); //display ledger screen
+                displayLedgerScreen(); //display ledger screen
                 break;
             case "X":
                 System.exit(0);
@@ -49,7 +50,7 @@ public class LedgerApplication {
                 //to String to print class
         }
     }
-    public static void displayLedger(){
+    public static void displayLedgerScreen(){
         String header = String.format("Date","Time","Description","Vendor","Amount");
         System.out.println("""
                 Welcome to the Ledger Screen
@@ -75,15 +76,17 @@ public class LedgerApplication {
                 break;
             case "R":
                 LedgerLogic.reportsScreen(); //goes to reports screen
+                break;
             case "H":
                 System.out.println("Now returning to home screen...");
                homeScreen();  //returns to home screen
+                break;
             default:
                 System.out.println("Invalid input. Please enter A, D, P, R, or H");
-                displayLedger();
+                displayLedgerScreen();
         }
     }
-    public void reportsScreen(){
+    public static void reportsScreen(){
         boolean loopFlag = true;
         while (loopFlag) {
             System.out.println("""
@@ -91,9 +94,33 @@ public class LedgerApplication {
                     1) Month to Date
                     2) Previous Month
                     3) Year to Date
+                    4) Previous Year
                     5) Search by Vendor
                     0) Return to Reports Screen
                     """);
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            switch (choice) {
+                case 1:
+                    break;
+
+                case 2:
+                    break;
+
+                case 3:
+                    break;
+                case 4:
+                    break;
+
+                case 5:
+                    break;
+                case 0:
+                    loopFlag=false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
         }
     }
 }

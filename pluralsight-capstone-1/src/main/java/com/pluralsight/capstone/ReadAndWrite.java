@@ -37,7 +37,7 @@ public class ReadAndWrite {
 
         // Write the data to the CSV file
         try {
-            FileWriter fWriter = new FileWriter("./src/main/resources/transactions.csv");
+            FileWriter fWriter = new FileWriter("src/main/resources/transactions.csv");
             BufferedWriter bWriter = new BufferedWriter(fWriter);
             for (Transaction t : transactions) {
                 bWriter.newLine();
@@ -49,15 +49,15 @@ public class ReadAndWrite {
                     bWriter.newLine(); // Move to the next line
                 }
                 bWriter.close();
+            System.out.println("Successfully written information to file"); // Return statement after writing
             } catch(IOException e){
                 return "Error writing to file: ";
             }
-
-        return "Successfully written information to file"; // Return statement after writing
+        return null;
     }
-    public void readToFile(){
+    public static void readToFile(){
         try {
-            FileReader fileReader = new FileReader("./src/main/resources/transactions.csv");
+            FileReader fileReader = new FileReader("src/main/resources/transactions.csv");
             BufferedReader bufReader = new BufferedReader(fileReader);
             String input;
             while ((input = bufReader.readLine()) !=null) {

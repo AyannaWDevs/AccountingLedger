@@ -1,4 +1,5 @@
 package com.pluralsight.capstone;
+
 import java.time.LocalDate;
 
 
@@ -20,9 +21,12 @@ public class Transaction { //class properties
     // constructor
     public Transaction(String description, String vendor, double amount, LocalDate endDate, LocalDate startDate){
             this.description = description;
+        this.vendor = vendor;
+        this.amount = amount;
+        this.endDate = endDate;
+        this.startDate = startDate;
             // same thing
     }
-
     public LocalDate getStartDate() {
         return startDate;
     }
