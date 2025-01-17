@@ -44,8 +44,8 @@ public class ReadAndWrite {
             String [] transactionInfo = input.split("[|]");
             String date = transactionInfo[0];
             String time = transactionInfo[1];
-            String vendor = transactionInfo[2];
-            String description = transactionInfo[3];
+            String vendor = transactionInfo[3];
+            String description = transactionInfo[2];
             double amount = Double.parseDouble(transactionInfo[4]);
             Transaction transaction = new Transaction(description,vendor,amount,date,time);
             transactions.add(transaction);
