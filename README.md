@@ -12,3 +12,11 @@
 ![Screenshot 2024-10-21 144134](https://github.com/user-attachments/assets/534c81d9-dc5f-4d83-998a-bc86432c6e9b)
 3. Records Screen - used to filter the results of previous information displayed
 ![Screenshot 2024-10-21 144148](https://github.com/user-attachments/assets/a633eade-6be3-4a17-b67a-ee5c4f6a2c35)
+
+
+Version 2.0 Changes
+- Ledger loop return to previous screen instead of home screen
+![image](https://github.com/user-attachments/assets/3c13db14-fdf3-4465-8fff-e86c2d04e69a)
+![image](https://github.com/user-attachments/assets/5061006d-163b-49f6-9787-893818b46f9b)
+
+
