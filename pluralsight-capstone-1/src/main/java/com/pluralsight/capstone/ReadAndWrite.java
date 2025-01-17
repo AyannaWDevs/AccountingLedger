@@ -36,7 +36,8 @@ public class ReadAndWrite {
 
     public static void readToFile() {
         try {
-            FileReader fileReader = new FileReader("C:\\pluralsight\\LearnToCode_Capstones\\pluralsight-capstone-1\\src\\main\\resources\\transactions.csv");
+            //FileReader fileReader = new FileReader("C:\\pluralsight\\LearnToCode_Capstones\\pluralsight-capstone-1\\src\\main\\resources\\transactions.csv");
+            FileReader fileReader = new FileReader("./src/main/resources/transactions.csv");
             BufferedReader bufReader = new BufferedReader(fileReader);
             String input;
             while ((input = bufReader.readLine()) != null) {
