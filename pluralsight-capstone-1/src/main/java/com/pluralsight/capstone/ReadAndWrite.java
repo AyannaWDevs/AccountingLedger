@@ -23,7 +23,8 @@ public class ReadAndWrite {
 
         // Write the data to the CSV file
         try {
-            FileWriter fWriter = new FileWriter("C:\\pluralsight\\LearnToCode_Capstones\\pluralsight-capstone-1\\src\\main\\resources\\transactions.csv", true);
+            //FileWriter fWriter = new FileWriter("C:\\pluralsight\\LearnToCode_Capstones\\pluralsight-capstone-1\\src\\main\\resources\\transactions.csv", true);
+            FileWriter fWriter = new FileWriter("./src/main/resources/transactions.csv", true);
             BufferedWriter bWriter = new BufferedWriter(fWriter);
             bWriter.write(transactions.getDate() + "|" + transactions.getTime() + "|" + transactions.getDescription() + "|" + transactions.getVendor() + "|" + transactions.getAmount()+"\n");
             bWriter.close();
