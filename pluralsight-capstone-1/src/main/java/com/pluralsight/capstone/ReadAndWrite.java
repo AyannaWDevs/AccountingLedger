@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+// Adding comment to new-branch
+
 public class ReadAndWrite {
     //Formatting date and time
     static LocalDate theDate = LocalDate.now();
