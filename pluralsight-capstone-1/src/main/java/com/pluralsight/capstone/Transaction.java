@@ -40,4 +40,9 @@ public class Transaction { //class properties
     public double getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount + "\n";
+    }
 }
