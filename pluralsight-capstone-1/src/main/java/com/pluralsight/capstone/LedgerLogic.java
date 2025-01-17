@@ -28,11 +28,12 @@ public class LedgerLogic {
     }
 
     public static void displayPayments() {
-        for (Transaction transaction : transactions) {
-            if (transaction.getAmount() <= 0) {
-                System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription() + "|" + transaction.getVendor() + "|" + transaction.getAmount() + "\n");
-            }
-        }
+        transactions.stream().filter(t -> t.getAmount() <= 0).forEach(System.out::println);
+//        for (Transaction transaction : transactions) {
+//            if (transaction.getAmount() <= 0) {
+//                System.out.println(transaction.getDate() + "|" + transaction.getTime() + "|" + transaction.getDescription() + "|" + transaction.getVendor() + "|" + transaction.getAmount() + "\n");
+//            }
+//        }
     }
 
     public static String getDate() {
@@ -50,9 +51,7 @@ public class LedgerLogic {
             String transactionMonth = transactionDateParts[1];
 
             if (transactionYear.equals(currentYear) && transactionMonth.equals(currentMonth)) {
-                System.out.println(
-                        transaction.getDate() + " | " +
-                                transaction.getTime() + " | " + transaction.getDescription() + " | " + transaction.getVendor() + " | " + transaction.getAmount());
+                System.out.println(transaction);
             }
         }
 
