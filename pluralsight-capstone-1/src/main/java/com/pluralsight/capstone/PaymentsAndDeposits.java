@@ -23,7 +23,7 @@ public class PaymentsAndDeposits {
         try {
             FileWriter myWriter = new FileWriter("src/main/resources/transactions.csv", true);
             BufferedWriter bWriter = new BufferedWriter(myWriter);
-            System.out.println("Who is the deposit payable to?");
+            System.out.println("Please enter the source of deposit.");
             String depositPayableTo = scanner2.nextLine();
             System.out.println("What is the deposit amount?");
             Double depositAmount = scanner2.nextDouble();
